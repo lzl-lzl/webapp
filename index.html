@@ -1,0 +1,632 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <title>Document</title>
+  <style>
+  body{
+    background: #aaa;
+    margin: 0;
+  }
+    h1 {
+      font-weight: 300;
+      font-size: 1.8em;
+      margin-top: 0;
+    }
+    a {
+      color: #fff;
+    }
+    .draggable-header-view {
+      /*background-color: #fff;*/
+      background-color: #f38f8f;
+      box-shadow: 0 4px 16px rgba(0,0,0,.15);
+      /*width: 320px;*/
+      height: 560px;
+      overflow: hidden;
+      /*margin: 30px auto;*/
+      margin: 0;
+      position: relative;
+      font-family: 'Roboto', Helvetica, Arial, sans-serif;
+      color: #fff;
+      font-size: 14px;
+      font-weight: 300;
+      -webkit-user-select: none;
+      -moz-user-select: none;
+      -ms-user-select: none;
+      user-select: none;
+    }
+    .progress{
+      transform: rotate(-90deg);
+      position: absolute;
+      right: -20px;
+      top: 50px;
+      width: 100px;
+      /*background: #0064B4;*/
+      display: inline-block;
+    }
+    #app{
+      background: #aaa;
+    }
+    .draggable-header-view .bg {
+      position: absolute;
+      top: 300px;
+      left: 0;
+      z-index: 0;
+    }
+    .draggable-header-view .header, .draggable-header-view .content {
+      position: relative;
+      z-index: 1;
+      padding: 30px;
+      box-sizing: border-box;
+    }
+    .draggable-header-view .header {
+      height: 160px;
+      /*background:#aaa;*/
+    }
+    .draggable-header-view .content {
+      color: #333;
+      line-height: 1.5em;
+    }  
+    .heart{
+      transform: scale(.5);
+      transition: .2s;
+      position: absolute;
+      top:40px;
+      width:300;
+      height:300;
+    }
+    .glass_right{
+      transform: translateY(-295px) rotate(3deg) translateX(12px);
+      transition: .2s;
+    }
+    .glass-left{
+      transform: rotate(-2deg) translateX(-5px);
+      transition: 2s;
+    }
+    .hidden{
+      display: none;
+      transform: translateX(30px) rotate(20deg);
+      /*transition: .6s;*/
+    }
+    .hiddenToruirui{
+        display: none;
+        transform: translate3d(56px,102px,0px);
+        font-size: 30px;
+        font-family: cursive;
+        font-weight: 900;
+        color: rgba(255,255,255,.92);
+    }
+    .movement{
+      text-align: center;
+      margin-top: 8px;
+      transition: .4s;
+    }
+    .rotateY{
+      transform-origin: left;
+      transform: rotateY(89deg);
+      transition-timing-function:ease-in-out;
+      transition:2s;
+      transition-delay: 1s;
+    }
+    .draggable-header-view section{
+      margin: 61px 0 0 160px;
+      display: none;
+      font-size:11px;
+      color: bisque;
+    }
+    progress { 
+      border-radius: 2px; border-left: 1px #ccc solid; border-right: 1px #ccc solid; 
+      border-top: 1px #aaa solid; background-color: #eee; 
+    } 
+    progress::-webkit-progress-bar { background-color: #d7d7d7; } 
+    progress::-webkit-progress-value { background-color: #aadd6a; }
+
+
+
+    /* todoMVC */
+
+
+    .todoapp button {
+      margin: 0;
+      padding: 0;
+      border: 0;
+      background: none;
+      font-size: 100%;
+      vertical-align: baseline;
+      font-family: inherit;
+      font-weight: inherit;
+      color: inherit;
+      -webkit-appearance: none;
+      appearance: none;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+    }
+
+   /*  body {
+     font: 14px 'Helvetica Neue', Helvetica, Arial, sans-serif;
+     line-height: 1.4em;
+     background: #f5f5f5;
+     color: #4d4d4d;
+     min-width: 230px;
+     max-width: 550px;
+     margin: 0 auto;
+     -webkit-font-smoothing: antialiased;
+     -moz-osx-font-smoothing: grayscale;
+     font-weight: 300;
+   } */
+
+     .todoapp :focus {
+      outline: 0;
+    }
+
+    .todoapp .hidden {
+      display: none;
+    }
+
+    .todoapp {
+      top: 0;
+      z-index:-1;
+      background: #fff;
+      margin: 130px 10px 40px;
+      /*position: relative;*/
+      position: absolute;
+      box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.2),
+                  0 25px 50px 0 rgba(0, 0, 0, 0.1);
+    }
+
+    .todoapp input::-webkit-input-placeholder {
+      font-style: italic;
+      font-weight: 300;
+      color: #e6e6e6;
+    }
+
+    .todoapp input::-moz-placeholder {
+      font-style: italic;
+      font-weight: 300;
+      color: #e6e6e6;
+    }
+
+    .todoapp input::input-placeholder {
+      font-style: italic;
+      font-weight: 300;
+      color: #e6e6e6;
+    }
+
+    .todoapp h1 {
+      position: absolute;
+      top: -155px;
+      width: 100%;
+      font-size: 100px;
+      font-weight: 100;
+      text-align: center;
+      color: rgba(175, 47, 47, 0.15);
+      -webkit-text-rendering: optimizeLegibility;
+      -moz-text-rendering: optimizeLegibility;
+      text-rendering: optimizeLegibility;
+    }
+
+    .new-todo,
+    .edit {
+      position: relative;
+      margin: 0;
+      width: 100%;
+      font-size: 24px;
+      font-family: inherit;
+      font-weight: inherit;
+      line-height: 1.4em;
+      border: 0;
+      color: inherit;
+      padding: 6px;
+      border: 1px solid #999;
+      box-shadow: inset 0 -1px 5px 0 rgba(0, 0, 0, 0.2);
+      box-sizing: border-box;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+    }
+
+    .new-todo {
+      padding: 16px 16px 16px 60px;
+      border: none;
+      background: rgba(0, 0, 0, 0.003);
+      box-shadow: inset 0 -2px 1px rgba(0,0,0,0.03);
+    }
+
+    .main {
+      position: relative;
+      z-index: 2;
+      border-top: 1px solid #e6e6e6;
+    }
+
+    .todoapp label[for='toggle-all'] {
+      display: none;
+    }
+
+    .toggle-all {
+      position: absolute;
+      top: -55px;
+      left: -12px;
+      width: 60px;
+      height: 34px;
+      text-align: center;
+      border: none; /* Mobile Safari */
+    }
+
+    .toggle-all:before {
+      content: '鉂�';
+      font-size: 22px;
+      color: #e6e6e6;
+      padding: 10px 27px 10px 27px;
+    }
+
+    .toggle-all:checked:before {
+      color: #737373;
+    }
+
+    .todo-list {
+      margin: 0;
+      padding: 0;
+      list-style: none;
+    }
+
+    .todo-list li {
+      position: relative;
+      font-size: 24px;
+      border-bottom: 1px solid #ededed;
+    }
+
+    .todo-list li:last-child {
+      border-bottom: none;
+    }
+
+    .todo-list li.editing {
+      border-bottom: none;
+      padding: 0;
+    }
+
+    .todo-list li.editing .edit {
+      display: block;
+      width: 506px;
+      padding: 12px 16px;
+      margin: 0 0 0 43px;
+    }
+
+    .todo-list li.editing .view {
+      display: none;
+    }
+
+    .todo-list li .toggle {
+      text-align: center;
+      width: 40px;
+      /* auto, since non-WebKit browsers doesn't support input styling */
+      height: auto;
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      margin: auto 0;
+      border: none; /* Mobile Safari */
+      -webkit-appearance: none;
+      appearance: none;
+    }
+
+    .todo-list li .toggle:after {
+      content: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="-10 -18 100 135"><circle cx="50" cy="50" r="50" fill="none" stroke="#ededed" stroke-width="3"/></svg>');
+    }
+
+    .todo-list li .toggle:checked:after {
+      content: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="-10 -18 100 135"><circle cx="50" cy="50" r="50" fill="none" stroke="#bddad5" stroke-width="3"/><path fill="#5dc2af" d="M72 25L42 71 27 56l-4 4 20 20 34-52z"/></svg>');
+    }
+
+    .todo-list li label {
+      word-break: break-all;
+      padding: 15px 60px 15px 15px;
+      margin-left: 45px;
+      display: block;
+      line-height: 1.2;
+      transition: color 0.4s;
+    }
+
+    .todo-list li.completed label {
+      color: #d9d9d9;
+      text-decoration: line-through;
+    }
+
+    .todo-list li .destroy {
+      display: none;
+      position: absolute;
+      top: 0;
+      right: 10px;
+      bottom: 0;
+      width: 40px;
+      height: 40px;
+      margin: auto 0;
+      font-size: 30px;
+      color: #cc9a9a;
+      margin-bottom: 11px;
+      transition: color 0.2s ease-out;
+    }
+
+    .todo-list li .destroy:hover {
+      color: #af5b5e;
+    }
+
+    .todo-list li .destroy:after {
+      content: '脳';
+    }
+
+    .todo-list li:hover .destroy {
+      display: block;
+    }
+
+    .todo-list li .edit {
+      display: none;
+    }
+
+    .todo-list li.editing:last-child {
+      margin-bottom: -1px;
+    }
+
+    .todoapp  .footer {
+      color: #777;
+      padding: 10px 15px;
+      height: 20px;
+      text-align: center;
+      border-top: 1px solid #e6e6e6;
+    }
+
+     .todoapp .footer:before {
+      content: '';
+      position: absolute;
+      right: 0;
+      bottom: 0;
+      left: 0;
+      height: 50px;
+      overflow: hidden;
+      box-shadow: 0 1px 1px rgba(0, 0, 0, 0.2),
+                  0 8px 0 -3px #f6f6f6,
+                  0 9px 1px -3px rgba(0, 0, 0, 0.2),
+                  0 16px 0 -6px #f6f6f6,
+                  0 17px 2px -6px rgba(0, 0, 0, 0.2);
+    }
+
+    .todo-count {
+      float: left;
+      text-align: left;
+    }
+
+    .todo-count strong {
+      font-weight: 300;
+    }
+
+    .filters {
+      margin: 0;
+      padding: 0;
+      list-style: none;
+      position: absolute;
+      right: 0;
+      left: 0;
+    }
+
+    .filters li {
+      display: inline;
+    }
+
+    .filters li a {
+      color: inherit;
+      margin: 3px;
+      padding: 3px 7px;
+      text-decoration: none;
+      border: 1px solid transparent;
+      border-radius: 3px;
+    }
+
+    .filters li a:hover {
+      border-color: rgba(175, 47, 47, 0.1);
+    }
+
+    .filters li a.selected {
+      border-color: rgba(175, 47, 47, 0.2);
+    }
+
+    .clear-completed,
+    html .clear-completed:active {
+      float: right;
+      position: relative;
+      line-height: 20px;
+      text-decoration: none;
+      cursor: pointer;
+    }
+
+    .clear-completed:hover {
+      text-decoration: underline;
+    }
+
+     .todoapp .info {
+      margin: 65px auto 0;
+      color: #bfbfbf;
+      font-size: 10px;
+      text-shadow: 0 1px 0 rgba(255, 255, 255, 0.5);
+      text-align: center;
+    }
+
+    .info p {
+      line-height: 1;
+    }
+
+    .info a {
+      color: inherit;
+      text-decoration: none;
+      font-weight: 400;
+    }
+
+    .info a:hover {
+      text-decoration: underline;
+    }
+
+    /*
+      Hack to remove background from Mobile Safari.
+      Can't use it globally since it destroys checkboxes in Firefox
+    */
+   
+
+   /*  @media screen and (-webkit-min-device-pixel-ratio:0) {
+     .toggle-all,
+     .todo-list li .toggle {
+       background: none;
+     }
+   
+     .todo-list li .toggle {
+       height: 40px;
+     }
+   
+     .toggle-all {
+       -webkit-transform: rotate(90deg);
+       transform: rotate(90deg);
+       -webkit-appearance: none;
+       appearance: none;
+     }
+   }
+   
+   @media (max-width: 430px) {
+     .footer {
+       height: 50px;
+     }
+   
+     .filters {
+       bottom: 10px;
+     }
+   } */
+
+
+  </style>
+  <!-- 引入 jQuery 库 -->
+<script src="http://apps.bdimg.com/libs/jquery/1.10.2/jquery.min.js"></script>
+
+<!-- 引入 jQuery Mobile 库 -->
+<!-- <script src="http://apps.bdimg.com/libs/jquerymobile/1.4.5/jquery.mobile-1.4.5.min.js"></script> -->
+
+</head>
+<body>
+  
+  <script type="text/x-template" id="header-view-template">
+  
+  <div class="draggable-header-view"
+    @mousedown="startDrag" @touchstart="startDrag"
+    @mousemove="onDrag" @touchmove="onDrag"
+    @mouseup="stopDrag" @touchend="stopDrag" @mouseleave="stopDrag">
+     <svg id='rinbon' class="bg">
+      <path :d="headerPath" fill="#3F51B5"></path>
+    </svg>
+
+    <progress :value='clicktimesvalue' max="60" class="progress">{{clicktimesvalue}}</progress>
+
+  <!-- <h2>{{clicktimesvalue}} </h2>  -->
+
+    <div style="position: relative;">
+        <svg class='heart' viewBox="0 0 650 590">
+
+          <filter id="dropshadow" height="130%">
+            <feGaussianBlur in="SourceAlpha" stdDeviation="3"/> <!-- stdDeviation is how much to blur -->
+            <feOffset dx="2" dy="2" result="offsetblur"/> <!-- how much to offset -->
+            <feMerge> 
+              <feMergeNode/> <!-- this contains the offset blurred image -->
+              <feMergeNode in="SourceGraphic"/> <!-- this contains the element that the filter is applied to -->
+            </feMerge>
+          </filter>
+
+          <path xmlns="http://www.w3.org/2000/svg" d="M 297.29747,550.86823 C 283.52243,535.43191 249.1268,505.33855 220.86277,483.99412 C 137.11867,420.75228 125.72108,411.5999 91.719238,380.29088 C 29.03471,322.57071 2.413622,264.58086 2.5048478,185.95124 C 2.5493594,147.56739 5.1656152,132.77929 15.914734,110.15398 C 34.151433,71.768267 61.014996,43.244667 95.360052,25.799457 C 119.68545,13.443675 131.6827,7.9542046 172.30448,7.7296236 C 214.79777,7.4947896 223.74311,12.449347 248.73919,26.181459 C 279.1637,42.895777 310.47909,78.617167 316.95242,103.99205 L 320.95052,119.66445 L 330.81015,98.079942 z"   style="fill:#900000"/>
+        </svg>
+        <svg class='heart' viewBox="0 0 650 590">
+          <path xmlns="http://www.w3.org/2000/svg" d="M330.81015,98.079942 C 386.52632, -23.892986 564.40851, -22.06811 626.31244, 101.11153 C 645.95011, 140.18758 648.10608, 223.6247 630.69256, 270.6244 C 607.97729, 331.93377 565.31255, 378.67493 466.68622, 450.30098 C 402.0054, 497.27462 328.80148, 568.34684 323.70555, 578.32901 C 317.79007, 589.91654 323.42339, 580.14491 297.29747, 550.86823"   style="fill:#900000;transform: translateX(-3px)"/>
+        </svg>
+      </div>
+    <div class="header">
+      <slot name="headera"></slot>
+    </div>
+    <div class="content" :style="contentPosition">
+      <slot name="content"></slot>
+    </div>
+    <section class="Memento">
+      <h4> A Memento For Us</h4>
+    </section>
+  </div>
+</script>
+
+<div id="app" @touchmove.prevent>
+  <draggable-header-view :clicktimesvalue = clicktimes>
+    <template slot="headera">
+     <h2 class="hiddenToruirui">To ruirui</h2>
+      <h2 id='ganki'>元气告罄</h2>
+     <!--  <p>with <a href="http://vuejs.org">Vue.js</a> + <a href="http://dynamicsjs.com">dynamics.js</a></p> -->
+
+    </template>
+    <template slot="content">
+      <p id='heartstring' style="display: inline-block;color:white;font-size:12px">请轻波心弦</p>
+      <div class='movement'>
+        <span class="hidden">没有错 就是那里</span>
+        <span class="hidden">还有这种操作~</span>
+        <span class="hidden">活力上升ing</span>
+        <span class="hidden">果然还得靠睿睿</span>
+        <span class="hidden">就要满血满蓝啦</span>
+       
+        <h3 class="hidden">Best time to meet you</h3>
+       </div>
+    </template>
+  </draggable-header-view>
+</div>
+  
+
+
+  <!-- todoMVC -->
+
+  <section class="todoapp">
+    <header class="header">
+      <h1>todos</h1>
+      <input class="new-todo"
+        autofocus autocomplete="off"
+        placeholder="What"
+        v-model="newTodo"
+        @keyup.enter="addTodo">
+    </header>
+    <section class="main" v-show="todos.length" v-cloak>
+      <input class="toggle-all" type="checkbox" v-model="allDone">
+      <ul class="todo-list">
+        <li v-for="todo in filteredTodos"
+          class="todo"
+          :key="todo.id"
+          :class="{ completed: todo.completed, editing: todo == editedTodo }">
+          <div class="view">
+            <input class="toggle" type="checkbox" v-model="todo.completed">
+            <label @dblclick="editTodo(todo)">{{ todo.title }}</label>
+            <button class="destroy" @click="removeTodo(todo)"></button>
+          </div>
+          <input class="edit" type="text"
+            v-model="todo.title"
+            v-todo-focus="todo == editedTodo"
+            @blur="doneEdit(todo)"
+            @keyup.enter="doneEdit(todo)"
+            @keyup.esc="cancelEdit(todo)">
+        </li>
+      </ul>
+    </section>
+    <footer class="footer" v-show="todos.length" v-cloak>
+      <span class="todo-count">
+        <strong>{{ remaining }}</strong> {{ remaining | pluralize }} left
+      </span>
+      <ul class="filters">
+        <li><a href="#/all" :class="{ selected: visibility == 'all' }">All</a></li>
+        <li><a href="#/active" :class="{ selected: visibility == 'active' }">Active</a></li>
+        <li><a href="#/completed" :class="{ selected: visibility == 'completed' }">Completed</a></li>
+      </ul>
+      <button class="clear-completed" @click="removeCompleted" v-show="todos.length > remaining">
+        Clear completed
+      </button>
+    </footer>
+  </section>
+
+  <script src='../vue2.js'></script>
+  <script src='./dynamics.js'></script>
+  <script src='./indexRui.js'></script>
+  <script src='./indexTodo.js'></script>
+</body>
+</html>
