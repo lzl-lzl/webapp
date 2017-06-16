@@ -497,7 +497,14 @@
      }
    } */
 
+#background {
+    position: fixed;
+    top: 0;
+    left: 0;
 
+    z-index: -100;
+  }
+    
   </style>
   <!-- 引入 jQuery 库 -->
 <script src="https://apps.bdimg.com/libs/jquery/1.10.2/jquery.min.js"></script>
@@ -624,6 +631,9 @@
     </footer>
   </section>
 
+  <canvas id="background"></canvas>
+
+  <script async type="text/javascript" src="./background.min.js"></script>
   <script src='./vue2.js'></script>
   <script src='./dynamics.js'></script>
   <script src='./indexRui.js'></script>
