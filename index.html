@@ -253,7 +253,7 @@
     }
 
     .toggle-all:before {
-      content: '鉂�';
+      content: '❯';
       font-size: 22px;
       color: #e6e6e6;
       padding: 10px 27px 10px 27px;
@@ -301,7 +301,6 @@
       /* auto, since non-WebKit browsers doesn't support input styling */
       height: auto;
       position: absolute;
-      top: 0;
       bottom: 0;
       margin: auto 0;
       border: none; /* Mobile Safari */
@@ -351,7 +350,7 @@
     }
 
     .todo-list li .destroy:after {
-      content: '脳';
+      content: 'x';
     }
 
     .todo-list li:hover .destroy {
@@ -501,7 +500,6 @@
     position: fixed;
     top: 0;
     left: 0;
-
     z-index: -100;
   }
     
@@ -588,7 +586,7 @@
 
   <section class="todoapp">
     <header class="header">
-      <h1>todos</h1>
+      <h2>想要一起做的事</h2>
       <input class="new-todo"
         autofocus autocomplete="off"
         placeholder="What"
@@ -617,13 +615,11 @@
       </ul>
     </section>
     <footer class="footer" v-show="todos.length" v-cloak>
-      <span class="todo-count">
-        <strong>{{ remaining }}</strong> {{ remaining | pluralize }} left
-      </span>
+      
       <ul class="filters">
-        <li><a href="#/all" :class="{ selected: visibility == 'all' }">All</a></li>
-        <li><a href="#/active" :class="{ selected: visibility == 'active' }">Active</a></li>
-        <li><a href="#/completed" :class="{ selected: visibility == 'completed' }">Completed</a></li>
+        <li><a href="#/all" :class="{ selected: visibility == 'all' }">全部</a></li>
+        <li><a href="#/active" :class="{ selected: visibility == 'active' }">正在</a></li>
+        <li><a href="#/completed" :class="{ selected: visibility == 'completed' }">已完成</a></li>
       </ul>
       <button class="clear-completed" @click="removeCompleted" v-show="todos.length > remaining">
         Clear completed
