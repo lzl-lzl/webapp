@@ -9,6 +9,203 @@
     background: #aaa;
     margin: 0;
   }
+
+  #pageContain {
+      overflow: hidden;
+    }
+    .page {
+      display: none;
+      width: 100%;
+      height: 100%;
+      overflow: hidden;
+      position: absolute;
+      top: 0;
+      left: 0;
+    }
+    .contain {
+      width: 100%;
+      height: 100%;
+      display: none;
+      position: relative;
+      z-index: 0;
+    }
+    .current .contain,.slide .contain {
+      display: block;
+    }
+    .current {
+      display: block;
+      z-index: 1;
+    }
+    .slide {
+      display: block;
+      z-index: 2;
+    }
+    .swipe {
+        display: block;
+        z-index: 3;
+        transition-duration: 0ms !important;
+        -webkit-transition-duration: 0ms !important;
+    }
+    .page1 {
+      background: #37c1e3;
+    }
+    .page2 {
+      background: #009922;
+    }
+    .page3 {
+      background: #992211;
+    }
+    
+    #navBar {
+      z-index: 3;
+      position: absolute;
+        font-size: 0px;
+        line-height: 0;
+      bottom: 10px;
+        text-align: center;
+        width: 200px;
+      left: 50%;
+        margin-left: -100px;
+    }
+    #navBar .active {
+        background: #ccc;
+    }
+    #navBar li {
+        background: transparent;
+        border: 1px solid #ccc;
+        display: inline-block;
+        font-size: 0px;
+        margin: 0 4px;
+        *float: left;
+        *zoom:1;
+        cursor: pointer;
+        transition: all .7s ease;
+        border-radius: 50%;
+        line-height: 10px;
+        text-align: center;
+        width: 10px;
+        height: 10px;
+    }
+ 
+   /*  #prev {
+       left: 0
+   }
+   #next {
+       right: 0
+   } */
+    .nav {
+        z-index: 5;
+        position: fixed;
+        _position:absolute;
+        background: #fff;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 60px;
+        line-height: 60px;
+    }
+    .nav li {
+        display: inline;
+        float: right;
+        margin: 0 12px;
+    }
+    .pic{
+        position: absolute;
+        height: 50%;
+        width:100%;
+       
+    }
+    .pic1{
+        top: 0;
+    }
+    .pic2{
+        bottom: 0;
+    }
+    .block{
+        float: left;
+        width:50%;
+        height:50%;
+        font-family: cursive;
+        font-size: 8rem;
+        text-align: center;
+        color:white;
+        transition: 2s;
+    }
+    .svg_img{
+        transform: translateY(-36px);
+        transition: 1s;
+    }
+    .svg_img:hover{
+       opacity: .5;
+    }
+    .block1{
+        background:#75c4a4;
+    }
+    .block2{
+        background:#ee7968;
+    }
+    .block3{
+        background:#f8b857;
+    }
+    .block4{
+        background:#a1d0e0;
+    }
+   
+   .smallpic{
+     position: absolute;
+    transition: .3s;
+   }
+
+    .smallpic:hover{
+     transform: scale(.8)
+   }
+   .smallpic1{
+     width: 60px;
+        left: 3%;
+        top: 19%;
+   }
+    .smallpic2{
+         width: 70px;
+     right: 20%;
+     top: 10%;
+   }
+    .smallpic3{
+         width: 50px;
+     left: 20%;
+     bottom: 30%; 
+   }
+    .smallpic4{
+     width: 30px;
+     right: 20%;
+     bottom: 20%; 
+   }
+   .smallpic5{
+     width: 50px;
+     right: 30%;
+     bottom: 30%; 
+   }
+   .pagetwo{
+     background-image: url('images/xiatian.jpg');
+     background-size: 100% 100%;
+   }
+   .use{
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%,-50%);
+        color: rgb(255, 255, 255);
+        border: 1px solid rgb(173, 216, 230);
+        box-shadow: 2px 2px 5px #e9e3b6;
+        border-radius: 2px;
+        padding: 2px 6px;
+        letter-spacing: 2px;
+   }
+   .use:hover{
+        color: rgb(158, 212, 189);
+        background: rgb(255, 255, 230);
+   }
+
+   /* 四季seasons */
     h1 {
       font-weight: 300;
       font-size: 1.8em;
@@ -47,6 +244,7 @@
     }
     #app{
       background: #aaa;
+      display: none;
     }
     .draggable-header-view .bg {
       position: absolute;
@@ -566,13 +764,55 @@
   </div>
 </script>
 
+<div id='seasons'>
+  <div id="pageContain">
+    
+    <div class="page page1 current" style='position: relative;'>
+      <div class="contain">
+                <div class='block block1'>
+                    <span>春</span>
+                    <img src="./images/spring.svg" alt="" class='svg_img'>
+                    <img src="./images/springone.png" alt="" class='smallpic smallpic1'>
+                </div>
+                <div class='block block2'>
+                    <span>夏</span>
+                    <img src="./images/summer.svg" alt="" class='svg_img' style="transform: translateY(-38px);">
+                    <img src="./images/summer.png" alt="" class='smallpic smallpic2'>
+                </div>
+                <div class='block block3'>
+                    <span>秋</span>
+                    <img src="./images/full.svg" alt="" class='svg_img'> 
+                    <img src="./images/fullone.png" alt="" class='smallpic smallpic3'> 
+                </div>
+                <div class='block block4'>
+                    <span>冬</span>
+                    <img src="./images/winter.svg" alt="" class='svg_img'>
+                    <img src="./images/snowone.png" alt="" class='smallpic smallpic4'>
+                    <img src="./images/snowone.png" alt="" class='smallpic smallpic5'>
+                </div>
+
+      </div>
+    </div>
+
+    <div class="page page2">
+      <div class="contain pagetwo">
+        <div class="use">立即试用</div>
+      </div>
+    </div>
+  </div>
+  <ul id="navBar">
+    <li></li>
+    <li></li>
+  </ul>
+</div>
+
+
 <div id="app" @touchmove.prevent>
   <draggable-header-view :clicktimesvalue = clicktimes>
     <template slot="headera">
      <h2 class="hiddenToruirui">To ruirui</h2>
       <h2 id='ganki'>元气告罄</h2>
-     <!--  <p>with <a href="http://vuejs.org">Vue.js</a> + <a href="http://dynamicsjs.com">dynamics.js</a></p> -->
-
+  
     </template>
     <template slot="content">
       <p id='heartstring' style="display: inline-block;color:white;font-size:12px">请轻波心弦</p>
@@ -636,6 +876,54 @@
 
   <canvas id="background"></canvas>
 
+
+  <script type="text/javascript" src="fullPage.min.js"></script>
+
+  <script type="text/javascript">
+  
+var runPage,
+    interval,
+    autoPlay;
+
+// autoPlay = function(to) {
+
+//     clearTimeout(interval);
+//     interval = setTimeout(function() {
+//         runPage.go(to);
+//     }, 3000);
+
+// }
+
+runPage = new FullPage({
+
+  id : 'pageContain',                            // id of contain
+  slideTime : 800,                               // time of slide
+    effect : {                                     // slide effect
+        transform : {
+          translate : 'X',             // 'X'|'Y'|'XY'|'none'
+          scale : [1, 1],            // [scalefrom, scaleto]
+          rotate : [0, 0]            // [rotatefrom, rotateto]
+        },
+        opacity : [0, 1]                           // [opacityfrom, opacityto]
+    },                           
+  mode : 'touch,nav:navBar',               // mode of fullpage
+  easing : [0, .93, .39],                                // easing('ease','ease-in','ease-in-out' or use cubic-bezier like [.33, 1.81, 1, 1] )
+    callback : function(index, thisPage) {     // callback when pageChange
+
+        index = index + 1 > 3 ? 0 : index + 1;
+        // autoPlay(index);
+    }
+});
+
+$('.use').click(function() {
+  $("#app").show('slow');
+  $("#seasons").hide('slow');
+})
+// interval = setTimeout(function() {
+//     runPage.go(runPage.thisPage() + 1);
+// }, 3000);
+
+</script>
   <script async type="text/javascript" src="./background.min.js"></script>
   <script src='./vue2.js'></script>
   <script src='./dynamics.js'></script>
