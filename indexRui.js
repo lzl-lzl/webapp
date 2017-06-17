@@ -8,7 +8,7 @@ Vue.component('draggable-header-view', {
       dragging: false,
       // quadratic bezier control point
       c: {
-        x: 180,
+        x: 210,
         y: 60
       },
       // record drag start point
@@ -20,7 +20,7 @@ Vue.component('draggable-header-view', {
   },
   computed: {
     headerPath: function() {
-      return 'M0,0 ' + 'Q' + this.c.x + ',' + this.c.y + ' 320,0' + 'L320,0 320,30' +
+      return 'M0,0 ' + 'Q' + this.c.x + ',' + this.c.y + ' 420,0' + 'L420,0 420,30' +
         'Q' + this.c.x + ',' + this.c.y +
         ' 0,30'
     },
@@ -111,7 +111,7 @@ Vue.component('draggable-header-view', {
       if (this.dragging) {
         this.dragging = false
         dynamics.animate(this.c, {
-          x: 180,
+          x: 210,
           y: 60
         }, {
           type: dynamics.spring,

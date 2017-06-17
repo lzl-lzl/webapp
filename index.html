@@ -50,6 +50,7 @@
     }
     .draggable-header-view .bg {
       position: absolute;
+      overflow: visible;
       top: 300px;
       left: 0;
       z-index: 0;
@@ -91,7 +92,8 @@
     }
     .hiddenToruirui{
         display: none;
-        transform: translate3d(56px,102px,0px);
+        /*transform: translate3d(78px,12px,0px);*/
+        text-align: center;
         font-size: 30px;
         font-family: cursive;
         font-weight: 900;
@@ -165,10 +167,12 @@
     }
 
     .todoapp {
+      border-radius: 10px;
+      opacity:.86;
       top: 0;
       z-index:-1;
       background: #fff;
-      margin: 130px 10px 40px;
+      margin: 30px 10px 40px;
       /*position: relative;*/
       position: absolute;
       box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.2),
@@ -495,6 +499,10 @@
        bottom: 10px;
      }
    } */
+.Memento{
+  position: absolute;
+  font-size: 12px;
+}
 
 #background {
     position: fixed;
@@ -552,7 +560,8 @@
       <slot name="content"></slot>
     </div>
     <section class="Memento">
-      <h4> A Memento For Us</h4>
+      <h3> A   Memento </h3>
+      <h4 style="margin: 100px 0 0 100px;">点击右下可以翻页</h4>
     </section>
   </div>
 </script>
@@ -586,7 +595,7 @@
 
   <section class="todoapp">
     <header class="header">
-      <h2>想要一起做的事</h2>
+      <h2>想要做的事</h2>
       <input class="new-todo"
         autofocus autocomplete="off"
         placeholder="What"
