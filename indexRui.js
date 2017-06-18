@@ -8,7 +8,7 @@ Vue.component('draggable-header-view', {
       dragging: false,
       // quadratic bezier control point
       c: {
-        x: 210,
+        x: 240,
         y: 60
       },
       // record drag start point
@@ -100,7 +100,7 @@ Vue.component('draggable-header-view', {
     onDrag: function(e) {
       e = e.changedTouches ? e.changedTouches[0] : e
       if (this.dragging) {
-        this.c.x = 60 + (e.pageX - this.start.x)
+        this.c.x = 210 + (e.pageX - this.start.x)
           // dampen vertical drag by a factor
         var dy = e.pageY - this.start.y
         var dampen = dy > 0 ? 1.5 : 4
@@ -111,7 +111,7 @@ Vue.component('draggable-header-view', {
       if (this.dragging) {
         this.dragging = false
         dynamics.animate(this.c, {
-          x: 210,
+          x: 240,
           y: 60
         }, {
           type: dynamics.spring,

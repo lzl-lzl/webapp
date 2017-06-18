@@ -65,14 +65,15 @@
         text-align: center;
         width: 200px;
       left: 50%;
-        margin-left: -100px;
+      transform: translateX(-50%);
+           padding-left: 0;
     }
     #navBar .active {
         background: #ccc;
     }
     #navBar li {
         background: transparent;
-        border: 1px solid #ccc;
+        border: 1px solid #ff1b1b;
         display: inline-block;
         font-size: 0px;
         margin: 0 4px;
@@ -134,7 +135,7 @@
     .svg_img{
         transform: translateY(-36px);
         transition: 1s;
-        width: 150px;
+        width: 106px;
     }
     .svg_img:hover{
        opacity: .5;
@@ -308,7 +309,7 @@
       transform: rotateY(89deg);
       transition-timing-function:ease-in-out;
       transition:2s;
-      transition-delay: 1s;
+      /*transition-delay: 1s;*/
     }
     .draggable-header-view section{
       margin: 61px 0 0 160px;
@@ -367,7 +368,7 @@
 
     .todoapp {
       border-radius: 10px;
-      opacity:.86;
+      opacity:.8;
       top: 0;
       z-index:-1;
       background: #fff;
@@ -836,7 +837,7 @@
 
   <section class="todoapp">
     <header class="header">
-      <h2>想要做的事</h2>
+      <h2 style="text-align: center;">想要做的事</h2>
       <input class="new-todo"
         autofocus autocomplete="off"
         placeholder="What"
