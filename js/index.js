@@ -74,7 +74,7 @@ function init() {
 		return min + Math.random() * (max - min);
 	}
 
-	emitter.onmousedown = emitter.ontouchstart = function() {
+	$(body).onmousedown = $(body).ontouchstart = function() {
 		explode(emitter);
 		$(emitter).hide();
 
