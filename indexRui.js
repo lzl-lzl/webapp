@@ -66,10 +66,14 @@ Vue.component('draggable-header-view', {
         case 12:
           // $('#heartstring').hide();
           $('.hidden').hide();
+          $('#heartstring').hide();
           $('#ganki').html("元气补充完毕").delay(2000).hide(1000);
           $('progress').delay(2000).hide(1000);
-
+          $("#cakeWrapper").show();
           // $('#emitter').appendTo('#bigHeart');
+          $('#bigHeart').addClass('rotateRadily');
+          $('.hidden').eq(10).addClass('Not_hidden')
+          $('#bigHeart').delay(1200).hide(2000);
           $('.hiddenToruirui').delay(2600).show(1200);
           $('section.Memento').delay(3000).show(1200);
           // $('.draggable-header-view').addClass('rotateY');
@@ -97,6 +101,7 @@ Vue.component('draggable-header-view', {
       }
       if (e.target.className == "draggable-header-view" && this.clicktimesvalue >= 60) {
         $('#app').addClass('rotateY').delay(1000).hide('normal');
+        $('#cakeWrapper').hide('normal');
       }
       this.clicktimesvalue = this.clicktimesvalue + 5;
       $('.heart').css('transform', 'scale(.4)');
