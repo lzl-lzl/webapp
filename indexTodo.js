@@ -1,8 +1,9 @@
 var STORAGE_KEY = 'todos-vuejs-2.0'
 var todoStorage = {
   fetch: function() {
-    console.log('sss')
-    var todos = JSON.parse(localStorage.getItem(STORAGE_KEY) || '[]')
+    // console.log('sss')
+    var todos = JSON.parse(localStorage.getItem(STORAGE_KEY) || '[{"id":0,"title":"给过去的自己发送一发Dmail让自己不再错过睿睿的生日 真是太机智了","completed":true}]')
+
     todos.forEach(function(todo, index) {
       todo.id = index
     })

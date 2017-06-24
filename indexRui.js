@@ -37,31 +37,39 @@ Vue.component('draggable-header-view', {
     clicktimesvalue: function(oldValue, newValue) {
       switch (oldValue / 5) {
         case 2:
-          $('.hidden').hide(1000);
-          $('.hidden').eq(0).show(1200);
+          var randHright = parseInt(Math.random()) * 10
+            // $('.hidden').hide(1000);
+          $('.hidden').eq(0).addClass('Not_hidden');
+          $('.hidden').eq(8).addClass('Not_hidden');
           $('#ganki').html("元气补充中").delay(1000);
           break;
         case 4:
-          $('.hidden').hide();
-          $('.hidden').eq(1).show(1200);
+          // $('.hidden').hide();
+          $('.hidden').eq(1).addClass('Not_hidden');
+          $('.hidden').eq(6).addClass('Not_hidden');
           break;
         case 6:
-          $('.hidden').hide();
-          $('.hidden').eq(2).show('normal');
+          // $('.hidden').hide();
+          $('.hidden').eq(2).addClass('Not_hidden');
+          $('.hidden').eq(7).addClass('Not_hidden');
           break;
         case 8:
-          $('.hidden').hide();
-          $('.hidden').eq(3).show('normal');
+          // $('.hidden').hide();
+          $('.hidden').eq(3).addClass('Not_hidden');
+          $('.hidden').eq(5).addClass('Not_hidden');
           break;
         case 10:
-          $('.hidden').hide();
-          $('.hidden').eq(4).show('normal');
+          // $('.hidden').hide();
+          $('.hidden').eq(4).addClass('Not_hidden');
+          $('.hidden').eq(9).addClass('Not_hidden');
           break;
         case 12:
-          $('#heartstring').hide();
+          // $('#heartstring').hide();
           $('.hidden').hide();
           $('#ganki').html("元气补充完毕").delay(2000).hide(1000);
           $('progress').delay(2000).hide(1000);
+
+          // $('#emitter').appendTo('#bigHeart');
           $('.hiddenToruirui').delay(2600).show(1200);
           $('section.Memento').delay(3000).show(1200);
           // $('.draggable-header-view').addClass('rotateY');
