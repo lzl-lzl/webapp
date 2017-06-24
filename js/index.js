@@ -74,7 +74,7 @@ function init() {
 		return min + Math.random() * (max - min);
 	}
 
-	$('body').onmousedown = $('body').ontouchstart = function() {
+	emitter.onmousedown = emitter.ontouchstart = function() {
 		explode(emitter);
 		$(emitter).hide();
 
@@ -108,19 +108,7 @@ function logoReveal() {
 	return logoReveal;
 }
 
-function reset() {
-	$('.-shadow').attr('style', '');
-	$('.js-box-wrap').attr('style', '');
-	$('.js-icon-logo').attr('style', '');
-	$('#emitter').attr('style', '');
-	$('.js-trigger-reset').hide();
-}
 
 $(document).ready(function() {
 	init();
-	$('.js-trigger-reset').click(function() {
-		reset();
-		init();
-	});
-	$('.toggle').eq(0).next().text('给过去的自己发送一发Dmail让过去的自己不再错过睿睿的生日')
 });
